@@ -5,8 +5,12 @@ cache:
   directories:
     - node_modules
 before_script:
+  - cd ..
+  - git clone https://github.com/JacobHeater/weaver-common.git
+  - cd weaver-common
+  - npm install
+  - cd ../weaver-portal
   - npm install
 script:
   - npm run build
   - npm run test
-  
