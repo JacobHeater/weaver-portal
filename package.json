@@ -1,0 +1,41 @@
+{
+  "name": "weaver-portal",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Client management portal for the Weaver project.",
+  "main": "bin/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "clean": "rimraf bin",
+    "rebuild": "npm run clean && npm run build",
+    "test": "npx jest",
+    "start": "npm run rebuild && electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacobHeater/weaver-portal.git"
+  },
+  "keywords": [
+    "Weaver",
+    "portal",
+    "mdm",
+    "mobile",
+    "device",
+    "management"
+  ],
+  "author": "Jacob Heater <jacobheater@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JacobHeater/weaver-portal/issues"
+  },
+  "homepage": "https://github.com/JacobHeater/weaver-portal#readme",
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/jest": "^24.0.15",
+    "electron": "^5.0.6",
+    "jest": "^24.8.0",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.2"
+  }
+}
