@@ -7,11 +7,12 @@ import request from 'request-promise-native';
 export class ApiManager {
 
   public get url(): string {
-    return `${this._baseUrl}/api/v${ApiVersion[this._version]}`;
+    return `${this._baseUrl}/api/v${this._version}`;
   }
 
   private _baseUrl: string;
   private _version: ApiVersion;
+
   constructor(baseUrl: string, version: ApiVersion = ApiVersion.V1) {
     this._version = version;
     this._baseUrl = baseUrl;
@@ -19,8 +20,8 @@ export class ApiManager {
 
   public async getConnectedClients(): Promise<Client[]> {
     const url = `${this.url}/clients`;
-    const response = (await request.get(url)) as Client[];
+    const response = await request.get(url);
 
-    return response;
+    return JSON.parse(response) as Client[];
   }
 }
