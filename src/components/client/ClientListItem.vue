@@ -4,10 +4,7 @@
       {{ client.id }}
     </div>
     <div class="computer-name field">
-      {{ client.computerName }}
-    </div>
-    <div class="upn field">
-      {{ client.userPrincipalName }}
+      {{ client.computerName }}/{{ client.userPrincipalName }}
     </div>
   </div>
 </template>
@@ -17,6 +14,7 @@
     border: 1px solid gray;
     border-top: none;
     font-size: .8em;
+    background: rgba(0, 0, 0, 0.7);
 
     .title {
       font-weight: bold;
@@ -30,10 +28,6 @@
     }
     .field {
       padding: 10px 5px;
-
-      &.computer-name {
-        border-bottom: 1px solid gray;
-      }
     }
   }
 </style>
