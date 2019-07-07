@@ -1,40 +1,63 @@
 
 <template>
   <div class="home">
-    <div v-if="!loading">
-      Number of connected users: {{ nUsers }}
+    <Header></Header>
+    <Loader v-if="loading" />
+    <div class="clients-list" v-else>
+      <ClientListItem
+        v-for="client in connectedClients"
+        v-bind:key="client.id"
+        v-bind:client="client"
+      ></ClientListItem>
     </div>
-    <Loader v-else />
   </div>
 </template>
 
+<style lang="scss">
+  .clients-list {
+    max-width: 300px;
+    width: 300px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    height: 100%;
+    border-right: 1px solid gray;
+    padding: 0 2px;
+    background-color: black;
+  }
+</style>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import { ApiManager } from "../common/api/api-manager";
-import { ApiVersion } from "../common/api/api-version";
-import Loader from '../components/Loader.vue';
+import { Component, Vue } from 'vue-property-decorator';
+import { Client } from '../../../weaver-common/src/common/client';
+import { ApiManager } from '../common/api/api-manager';
+import { ApiVersion } from '../common/api/api-version';
+import Loader from '../components/loader/Loader.vue';
+import ClientListItem from '../components/client/ClientListItem.vue';
+import Header from '../components/header/Header.vue';
 
 @Component({
   components: {
     Loader,
+    ClientListItem,
+    Header
   }
 })
 export default class Home extends Vue {
-  public nUsers: number = 0;
+  public connectedClients: Client[] = [];
   public loading: boolean = false;
 
   created() {
-    this.getNumberOfClients();
+    this.getConnectedClients();
   }
 
-  public async getNumberOfClients() {
+  public async getConnectedClients() {
     this.loading = true;
 
     const api = new ApiManager("http://localhost:3000", ApiVersion.V1);
-    const users = await api.getConnectedClients();
+    const clients = await api.getConnectedClients();
 
-    this.nUsers = users.length;
+    this.connectedClients = clients;
     this.loading = false;
   }
 }
