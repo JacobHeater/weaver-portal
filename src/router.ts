@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import Client from './views/Client.vue';
+import Settings from './views/Settings.vue';
 
 Vue.use(Router);
 
@@ -10,14 +12,23 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: '/index.html',
-    },
-    {
-      path: '/index.html',
-      name: 'home',
       component: Home,
       meta: {
         title: 'Weaver Portal'
+      }
+    },
+    {
+      path: '/client/:id',
+      component: Client,
+      meta: {
+        title: 'Client Administration'
+      }
+    },
+    {
+      path: '/settings',
+      component: Settings,
+      meta: {
+        title: 'Weaver Portal Settings'
       }
     },
   ],

@@ -1,5 +1,5 @@
 <template>
-  <div class="client">
+  <div class="client" v-on:dblclick="doubleClick" v-bind:title="tooltip">
     <div class="id title">
       {{ client.id }}
     </div>
@@ -15,6 +15,7 @@
     border-top: none;
     font-size: .8em;
     background: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
 
     .title {
       font-weight: bold;
@@ -23,7 +24,6 @@
       border: 1px solid black;
       padding: 5px 2px;
       text-align: center;
-      cursor: default;
       user-select: none;
     }
     .field {
@@ -42,5 +42,13 @@ export default class ClientListItem extends Vue {
     type: Object as () => Client
   })
   client!: Client;
+
+  get tooltip(): string {
+    return `Double click to open client ${this.client.id}`;
+  }
+
+  doubleClick(event: Event) {
+    this.$emit('open', this.client);
+  }
 }
 </script>

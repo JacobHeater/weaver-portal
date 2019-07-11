@@ -6,7 +6,7 @@ import request from 'request-promise-native';
 
 export class ApiManager {
 
-  public get url(): string {
+  get url(): string {
     return `${this._baseUrl}/api/v${this._version}`;
   }
 
@@ -18,7 +18,7 @@ export class ApiManager {
     this._baseUrl = baseUrl;
   }
 
-  public async getConnectedClients(): Promise<Client[]> {
+  async getConnectedClients(): Promise<Client[]> {
     const url = `${this.url}/clients`;
     const response = await request.get(url);
 

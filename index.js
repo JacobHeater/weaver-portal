@@ -3,22 +3,31 @@ const {
   BrowserWindow,
 } = require('electron');
 
+const winURL = process.env.NODE_ENV === 'development'
+  ? `http://localhost:9080`
+  : `file://${__dirname}/dist/index.html`;
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 
 function createWindow() {
   // Create the browser window.
+
   win = new BrowserWindow({
-    fullscreen: true,
     fullscreenable: true,
+    center: true,
+    width: 1425,
+    height: 966,
+    minWidth: 1425,
+    minHeight: 966,
     webPreferences: {
       nodeIntegration: true,
     },
   });
 
   // and load the index.html of the app.
-  win.loadFile('dist/index.html');
+  win.loadURL(winURL);
 
   // Emitted when the window is closed.
   win.on('closed', () => {
