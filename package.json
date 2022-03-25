@@ -11,7 +11,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "electron": "^5.0.6",
+    "electron": "^13.6.6",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",
     "socket.io-client": "^2.2.0",
